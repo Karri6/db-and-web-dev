@@ -23,6 +23,10 @@ def get_messages(thread_id):
     return Message.query.filter_by(thread_id=thread_id).all()
 
 
+def get_thread(thread_id):
+    return Thread.query.filter_by(id=thread_id).first()
+
+
 def add_thread(title, content, topic_id, user_id):
     new_thread = Thread(title=title, content=content, topic_id=topic_id, user_id=user_id)
     db.session.add(new_thread)
@@ -38,3 +42,11 @@ def add_message(content, thread_id, user_id):
 def get_topic_id(thread_id):
     thread = Thread.query.filter_by(id=thread_id).first()
     return thread.topic_id
+
+
+def add_topic(title, user_id):
+    new_topic = Topic(title=title, user_id=user_id)
+    db.session.add(new_topic)
+    db.session.commit()
+    return new_topic.id
+

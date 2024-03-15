@@ -48,7 +48,20 @@ def show_thread(thread_id):
         return redirect(url_for('main.show_thread', thread_id=thread_id))
 
     messages = get_messages(thread_id)
+    thread = get_thread(thread_id)
     topic_id = get_topic_id(thread_id)
-    return render_template("thread.html", messages=messages, thread_id=thread_id, topic_id=topic_id)
+    return render_template("thread.html", messages=messages, thread=thread,
+                           thread_id=thread_id, topic_id=topic_id)
 
+
+@main.route("/new_topic", methods=["GET", "POST"])
+def new_topic():
+    return render_template("new_topic.html")
+
+
+@main.route("/post_topic", methods=["GET","POST"])
+def post_topic():
+    title = request.form.get("title")
+    topic_id = add_topic(title, 1)
+    return redirect(url_for('main.new_thread', topic_id=topic_id))
 

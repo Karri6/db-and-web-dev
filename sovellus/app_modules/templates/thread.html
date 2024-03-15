@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Thread</title>
 </head>
 <body>
-    <h1>Messages</h1>
+    <h1>{{ thread.title }}</h1>
+    <div>
+        <p>{{ thread.content }}</p>
+        <p>Posted by User {{ thread.user_id }} on {{ thread.created_at }}:</p>
+    </div>
+
+    <h2>Replies:</h2>
     <ul>
     {% for message in messages %}
         <li>

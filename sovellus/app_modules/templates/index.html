@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Topics</title>
+    <title>Homepage</title>
 </head>
 <body>
     <h1>Topics</h1>
     <ul>
     {% for topic in topics %}
-        <li><a href="{{ url_for('main.show_topic', topic_id=topic.id) }}">View Topic</a></li>
+        <li><a href="{{ url_for('main.show_topic', topic_id=topic.id) }}">{{ topic.title }}</a></li>
     {% endfor %}
     </ul>
+
+    <a href="{{ url_for('main.new_topic') }}">Create New Topic</a>
 </body>
 </html>
