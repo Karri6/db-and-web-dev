@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thread</title>
+</head>
+<body>
+    <h1>Messages</h1>
+    <ul>
+    {% for message in messages %}
+        <li>
+            {{ message.content }} - Posted by User {{ message.user_id }} on {{ message.created_at }}
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h2>Reply to Thread</h2>
+    <form action="{{ url_for('main.show_thread', thread_id=thread_id) }}" method="post">
+        <textarea name="content" rows="4" cols="50" required></textarea><br>
+        <input type="submit" value="Send Message">
+    </form>
+
+    <a href="{{ url_for('main.show_topic', topic_id=topic_id) }}" class="btn btn-primary">Back to Topic</a>
+
+</body>
+</html>

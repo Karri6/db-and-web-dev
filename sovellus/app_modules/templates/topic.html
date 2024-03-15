@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Threads</title>
+</head>
+<body>
+    <h1>Threads</h1>
+    <ul>
+    {% for thread in threads %}
+        <li><a href="{{ url_for('main.show_thread', thread_id=thread.id) }}">{{ thread.title }}</a></li>
+    {% endfor %}
+    </ul>
+    <a href="{{ url_for('main.new_thread', topic_id=topic_id) }}">Create New Thread</a>
+</body>
+</html>

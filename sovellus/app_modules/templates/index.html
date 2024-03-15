@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topics</title>
+</head>
+<body>
+    <h1>Topics</h1>
+    <ul>
+    {% for topic in topics %}
+        <li><a href="{{ url_for('main.show_topic', topic_id=topic.id) }}">View Topic</a></li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

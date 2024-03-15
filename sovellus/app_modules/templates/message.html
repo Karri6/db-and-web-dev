@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages in Thread</title>
+</head>
+<body>
+    <h1>Messages</h1>
+    <ul>
+        {% for message in messages %}
+            <li>{{ message.content }} - Posted by {{ message.user_id }} at {{ message.created_at }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Reply to Thread</h2>
+    <form action="/thread/{{ thread_id }}/send" method="POST">
+        <textarea name="content" rows="4" cols="50" required="required"></textarea><br>
+        <input type="submit" value="Send Message">
+    </form>
+
+    <a href="/">Back to Topics</a>
+</body>
+</html>
