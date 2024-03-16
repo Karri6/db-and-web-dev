@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Homepage</title>
-</head>
-<body>
-    <h1>Topics</h1>
-    <ul>
-    {% for topic in topics %}
-        <li><a href="{{ url_for('main.show_topic', topic_id=topic.id) }}">{{ topic.title }}</a></li>
-    {% endfor %}
-    </ul>
+{% extends "base.html" %}
 
-    <a href="{{ url_for('main.new_topic') }}">Create New Topic</a>
-</body>
-</html>
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+<h1>Topics</h1>
+<ul>
+{% for topic in topics %}
+    <li><a href="{{ url_for('main.show_topic', topic_id=topic.id) }}">{{ topic.title }}</a></li>
+{% endfor %}
+</ul>
+
+<a href="{{ url_for('main.new_topic') }}">Create New Topic</a>
+{% endblock %}

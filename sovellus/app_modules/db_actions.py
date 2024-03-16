@@ -5,6 +5,8 @@ Implements the functions for handling db actions
 """
 from .db_models import User, Topic, Thread, Message
 from .db_instance import db
+from werkzeug.security import check_password_hash
+from flask import session
 
 
 def get_users():
@@ -50,3 +52,36 @@ def add_topic(title, user_id):
     db.session.commit()
     return new_topic.id
 
+
+def login_user(username, password):
+    user = User.query.filter_by(username=username).first()
+    if user and check_password_hash(user.password, password):
+        session["user_id"] = user.id
+        return True
+    return False
+
+
+def get_message_user_join(thread_id):
+    messages = db.session.query(
+        Message.content,
+        User.username.label("username"),
+        Message.created_at).join(
+        User, User.id == Message.user_id).filter(
+        Message.thread_id == thread_id).all()
+    return messages
+
+
+def get_thread_user_join(thread_id):
+    thread = db.session.query(
+        Thread.id,
+        Thread.title,
+        Thread.content,
+        User.username.label("username"),
+        Thread.created_at).join(
+        User, User.id == Thread.user_id).filter(
+        Thread.id == thread_id).first()
+    return thread
+
+
+def get_username(user_id):
+    return User.query.filter_by(id=user_id).first()

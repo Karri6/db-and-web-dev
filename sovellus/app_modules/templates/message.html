@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Messages in Thread</title>
-</head>
-<body>
-    <h1>Messages</h1>
-    <ul>
-        {% for message in messages %}
-            <li>{{ message.content }} - Posted by {{ message.user_id }} at {{ message.created_at }}</li>
-        {% endfor %}
-    </ul>
+{% extends "base.html" %}
 
-    <h2>Reply to Thread</h2>
-    <form action="/thread/{{ thread_id }}/send" method="POST">
-        <textarea name="content" rows="4" cols="50" required="required"></textarea><br>
-        <input type="submit" value="Send Message">
-    </form>
+{% block title %}Messages in the Thread{% endblock %}
+{% block content %}
+<h1>Messages</h1>
+<ul>
+    {% for message in messages %}
+        <li>{{ message.content }} - Posted by {{ message.username }} at {{ message.created_at|formatdatetime }}</li>
+    {% endfor %}
+</ul>
 
-    <a href="/">Back to Topics</a>
-</body>
-</html>
+<h2>Reply to Thread</h2>
+<form action="{{ url_for('main.send_message', thread_id=thread_id) }}" method="POST">
+    <textarea name="content" rows="4" cols="50" required="required"></textarea><br>
+    <input type="submit" value="Send Message">
+</form>
+
+<a href="{{ url_for('main.index') }}">Back to Topics</a>
+{% endblock %}

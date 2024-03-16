@@ -1,0 +1,17 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome{% endblock %}</title>
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+    <div>
+        <a href="{{ url_for('main.index') }}">Home</a>
+        <a>placeholder Profilepage </a>
+        <a href="{{ url_for('main.logout') }}">Logout</a>
+    </div>
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
