@@ -6,20 +6,20 @@
 <h1>{{ thread.title }}</h1>
 <div>
     <p>{{ thread.content }}</p>
-    <p>Created by User {{ thread.username }} on {{ thread.created_at|formatdatetime }}:</p>
+    <p>Created by {{ thread.username }} on {{ thread.created_at|formatdatetime }}</p>
 </div>
 
 <h2>Replies:</h2>
 <ul>
 {% for message in messages %}
     <li>
-        {{ message.content }} - Posted by User {{ message.username }} on {{ message.created_at|formatdatetime }}
+        {{ message.content }} - Posted by {{ message.username }} on {{ message.created_at|formatdatetime }}
     </li>
 {% endfor %}
 </ul>
 
 <h2>Reply to Thread</h2>
-<form action="{{ url_for('main.show_thread', thread_id=thread_id) }}" method="post">
+<form action="{{ url_for('main.show_thread', thread_id=thread.id) }}" method="post">
     <textarea name="content" rows="4" cols="50" required></textarea><br>
     <input type="submit" value="Send Message">
 </form>

@@ -1,6 +1,7 @@
 """
 Initializes the package for modularity.
 
+Uses flask login for the login login
 
 """
 
@@ -14,6 +15,13 @@ from app_modules.db_models import User
 
 
 def create_app():
+    """
+    Configures the  app after flask is launched, uses flask login to set up
+    logging in. *For now* inits the date and time format used in the html files
+
+
+    :return: instance of app
+    """
     root_dir = path.abspath(path.join(path.dirname(__file__), '..'))
     db_env_path = path.join(root_dir, "env_files", "db_url.env")
     key_env_path = path.join(root_dir, "env_files", "secret_key.env")
@@ -27,6 +35,12 @@ def create_app():
     app.config["SECRET_KEY"] = getenv("SECRET_KEY")
 
     def format_datetime(value, format='%H:%M %d-%m-%Y'):
+        """
+        Formats a datetime object to a string for the jinja to use
+        :param value: the datetime object being formatted
+        :param format: string, the format the date is set to
+        :return: formatted date time or an empty string if value is none
+        """
         if value is None:
             return ""
         return value.strftime(format)
@@ -41,6 +55,11 @@ def create_app():
 
     @manager.user_loader
     def load_user(user_id):
+        """
+        Uses flask login to create a user
+        :param user_id:
+        :return:
+        """
         return User.query.get(int(user_id))
 
     app.register_blueprint(main_blueprint)

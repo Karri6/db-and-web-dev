@@ -1,7 +1,7 @@
 """
 Implements the functions for handling db actions
 
-
+mostly getters and a couple join commands
 """
 from .db_models import User, Topic, Thread, Message
 from .db_instance import db
@@ -11,6 +11,10 @@ from flask import session
 
 def get_users():
     return User.query.all()
+
+
+def get_topic(topic_id):
+    return Topic.query.get_or_404(topic_id)
 
 
 def get_topics():
