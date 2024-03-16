@@ -17,7 +17,14 @@ The idea is a slightly modified version of the *"Discussion app"* example idea f
 - Adminis can add and remove messages, threads and topics
 - Adminis can create a ban users
 
-Inital plan has 6 database tables, this may increase during the project
+### Inital plan has 6 database tables. 
+> This may increase during the project
+- *users*
+- *user profiles*
+- *topics*
+- *threads*
+- *messages*
+- *log*
 
 ## Notes
 - goal is to get this project done quick, thus unlikely I will incorporate any extra features or a fancy interface.
