@@ -45,5 +45,5 @@ SECRET_KEY=h4g23e8fae6c3et5b724o8b4791aycd4
 ```
   flask run
 ```
-> This command will start a local server, accessible at http://127.0.0.1:5000
+This will start a local server, accessible at http://127.0.0.1:5000
 
