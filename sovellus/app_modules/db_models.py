@@ -12,7 +12,7 @@ from flask_login import UserMixin
 class User(UserMixin, db.Model):
     """
     Creates a class for the user object from the users table.
-    UserMixin used to use flask login is active and is authenticated methods
+    UserMixin used to use flask login is_active and is_authenticated methods
 
     > backrefs to topics threads messages and user profile to init one way
     to execute possible delete methods at some point

@@ -5,12 +5,17 @@ mostly getters and a couple join commands
 """
 from .db_models import User, Topic, Thread, Message
 from .db_instance import db
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from flask import session
+from sqlalchemy import text
 
 
 def get_users():
     return User.query.all()
+
+
+def get_user(username):
+    return User.query.filter_by(username=username).first()
 
 
 def get_topic(topic_id):
@@ -89,3 +94,22 @@ def get_thread_user_join(thread_id):
 
 def get_username(user_id):
     return User.query.filter_by(id=user_id).first()
+
+
+# TODO: fix issues with db.models usage
+# for now just regular sql query
+def add_user221(username, password):
+    hashed_password = generate_password_hash(password)
+    sql = text("INSERT INTO users (username, password, role) VALUES (:username, :password, 'user')")
+    db.engine.execute(sql, username=username, password=hashed_password)
+    new_user = get_user(username)
+    return new_user
+
+
+def add_user(username, password):
+    hashed_password = generate_password_hash(password)
+    new_user = User(username=username, password=hashed_password, role="user")
+    db.session.add(new_user)
+    db.session.commit()
+    return new_user
+

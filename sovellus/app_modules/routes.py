@@ -5,7 +5,7 @@ imports the flask login to handle permissions and login actions
 imports the database handling commands from db actions
 """
 
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from .db_actions import *
 from flask_login import logout_user, login_required, login_user, current_user
 
@@ -111,16 +111,56 @@ def login():
     :return: render template login html or index/homepage after login
     successful/unsuccessgul
     """
+    session.pop('_flashes', None)
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        user = User.query.filter_by(username=username).first()
+        user = get_user(username)
         if user and check_password_hash(user.password, password):
             login_user(user)
             return redirect(url_for("main.index"))
         else:
-            return render_template("login.html", error="Invalid username or password")
+            flash("Invalid username or password", "error")
+            return render_template("login.html")
     return render_template("login.html")
+
+
+@main.route("/signup", methods=["GET", "POST"])
+def signup():
+    """
+    initial signup logic, checks if username already exists, if not creates
+    a new user and logs them in
+
+    trying out the flash() method usage here
+
+    """
+    session.pop('_flashes', None)
+
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        confirm_password = request.form.get("confirm_password")
+
+        if not username or not password or not confirm_password:
+            flash("All fields must be filled.", "error")
+            return render_template("signup.html")
+
+        if password != confirm_password:
+            flash("The passwords have to match.", "error")
+            return render_template("signup.html")
+
+        user_exists = get_user(username)
+
+        if user_exists:
+            flash("This Username already exists.", "error")
+            return render_template("signup.html")
+        else:
+            new_user = add_user(username, password)
+            login_user(new_user)
+
+            return redirect(url_for("main.index"))
+
+    return render_template("signup.html")
 
 
 @main.route("/logout")
