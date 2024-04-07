@@ -42,7 +42,8 @@ The idea is a slightly modified version of the *"Discussion app"* example idea f
 - User can Send new messages under the threads
 
 ## How to use
-For proper see [sovellus/instructions.md](sovellus/instructions.md)
+App can be tested by following the instructions given on the course page on how ot run a flask app. 
+For detailed instructions see [sovellus/instructions.md](sovellus/instructions.md)
 
 
 ## Notes
