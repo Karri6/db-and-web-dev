@@ -43,6 +43,7 @@ The idea is a slightly modified version of the *"Discussion app"* example idea f
 
 ## How to use
 After activating the virtual environment from the venv/bin or venv/Scripts directory, the user can run the program with command flask run.
+
 For proper instructions see [sovellus/instructions.md](sovellus/instructions.md)
 
 
