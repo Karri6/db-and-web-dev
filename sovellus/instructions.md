@@ -5,7 +5,7 @@ Start by cloning this repository or download the raw files to your computer.
 
 ## Create .env File
 To begin, the user needs to create a new directory 'env_files' under the root directory (sovellus). Under this directory the user needs to create two files:
--First file is: 'db_url.env', copy and paste the following line to the file:
+- First file is: 'db_url.env', copy and paste the following line to the file:
 ```
 DATABASE_URL=postgresql://pajar:paprikamajoneesi@localhost/webdev_db
 ```
