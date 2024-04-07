@@ -5,6 +5,14 @@
 Web-app will be a familiar messaging board/ discussion forum, where users can post **messages** in different **topics** and **threads**, as well as create new topics and threads to discuss about.
 The idea is a slightly modified version of the *"Discussion app"* example idea from the course page.
 
+## Contents:
+- [Features](#features)
+- [Database Tables](#initial-plan-has-6-database-tables)
+- [Current State](#current-state)
+- [How to use](#how-to-use)
+- [Notes](#notes)
+
+
 ## Features
 - Users can log in and out
 - Users can create new account to login with
@@ -17,7 +25,7 @@ The idea is a slightly modified version of the *"Discussion app"* example idea f
 - Adminis can add and remove messages, threads and topics
 - Adminis can create a ban users
 
-### Inital plan has 6 database tables. 
+### Initial plan has 6 database tables 
 > This may increase during the project
 - *users*
 - *user profiles*
@@ -25,6 +33,17 @@ The idea is a slightly modified version of the *"Discussion app"* example idea f
 - *threads*
 - *messages*
 - *log*
+
+## Current State 
+### (7.4.-24)
+- User can Create a new username or login with a previously created username and password.
+- User can Interact and Add new topics on the homepage
+- User can Add new Threads under the topics
+- User can Send new messages under the threads
+
+## How to use
+For proper see [sovellus/instructions.md](sovellus/instructions.md)
+
 
 ## Notes
 - goal is to get this project done quick, thus unlikely I will incorporate any extra features or a fancy interface.
