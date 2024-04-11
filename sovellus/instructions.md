@@ -5,7 +5,7 @@
 Start by cloning this repository or download the raw files to your computer.
 
 ## Set Up Database Schema
-> These are the steps I took to ensure I got the database to work on another computer, if you have a better method feel free to use that.
+> These are the steps I took to get the database copied and running on another computer, if you have a better method feel free to use that. 
 
 Create new database with commands:
 ```
@@ -14,16 +14,13 @@ user=# CREATE DATABASE <new_db_name>;
 ```
 OR alternatively:
 ```
-createdb -U <your_psql_user> <new_db_name>
+createdb -U <your_psql_username> <new_db_name>
 ```
 
 Configure the database schema using this command.
 ```
 psql -d <new_db_name> < schema.sql
 ```
-
-If there are still issues
-
 
 ## Create .env Directory and Files
 To begin, the user needs to create a new directory 'env_files' under the root directory (sovellus). Under this directory the user needs to create two files:
@@ -37,6 +34,7 @@ DATABASE_URL=postgresql://<new_db_name>
 ```
 SECRET_KEY=h4g23e8fae6c3et5b724o8b4791aycd4
 ```
+> You can also generate your own secret key if you want to.
 
 ## Activate Virtual Environment
 **Unix-based systems:**
