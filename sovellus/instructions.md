@@ -1,5 +1,5 @@
 # Instructions
-> Previous instructions had mistakenlu still my personal local psql address in the instructions, apologies for anyone that had to go through extra steps to get the program working.
+> Previous instructions had mistakenly still my personal local psql address in the instructions, apologies for anyone that had to go through extra steps to get the program working.
 
 ## GIT clone
 Start by cloning this repository or download the raw files to your computer.
