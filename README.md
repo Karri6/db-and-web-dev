@@ -36,13 +36,14 @@ The idea is a slightly modified version of the *"Discussion app"* example idea f
 
 ## Current State 
 ### (7.4.-24)
-- User can Create a new username or login with a previously created username and password.
+- User can Create new profile (username and password) or login with previously created username and password.
 - User can Interact and Add new topics on the homepage
 - User can Add new Threads under the topics
 - User can Send new messages under the threads
 
 ## How to use
-For proper see [sovellus/instructions.md](sovellus/instructions.md)
+App can be tested by following the instructions given on the course page on how ot run a flask app. 
+For detailed instructions see [sovellus/instructions.md](sovellus/instructions.md)
 
 
 ## Notes
