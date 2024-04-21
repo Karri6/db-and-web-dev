@@ -7,8 +7,9 @@
     {% if current_user.is_authenticated %}
     <div>
         <a href="{{ url_for('main.index') }}">Home</a>
-        <a>placeholder Profilepage </a>
+        <a href="{{ url_for('main.view_profile') }}">Profile</a>
         <a href="{{ url_for('main.logout') }}">Logout</a>
+        <a href="{{ url_for('main.view_logs') }}">Admin Page</a>
     </div>
     {% endif %}
     {% block content %}

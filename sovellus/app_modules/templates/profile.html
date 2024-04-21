@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<h1>User Profile</h1>
+<div>
+    <img src="/static/default_image.png" alt="Profile Picture" width="200" height="200">
+    <p>First Name: {{ profile.first_name or 'Not set' }}</p>
+    <p>Last Name: {{ profile.last_name or 'Not set' }}</p>
+    <p>Birthdate: {{ profile.birthdate or 'Not set' }}</p>
+    <p>Biography: {{ profile.bio or 'Not set' }}</p>
+</div>
+<a>placeholder Edit Profile</a>
+{% endblock %}

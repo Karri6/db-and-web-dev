@@ -28,6 +28,9 @@ class User(UserMixin, db.Model):
     messages = db.relationship('Message', backref='user', lazy=True, cascade="all, delete-orphan")
     profile = db.relationship('UserProfile', backref='user', uselist=False, cascade="all, delete-orphan")
 
+    def is_admin(self):
+        return self.role
+
 
 class Topic(db.Model):
     __tablename__ = 'topics'
@@ -66,3 +69,12 @@ class UserProfile(db.Model):
     last_name = db.Column(db.String(50))
     picture_url = db.Column(db.String(255))
     bio = db.Column(db.String(100))
+
+
+class Log(db.Model):
+    __tablename__ = 'log'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    action = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text, nullable=True)
+    created_at = db.Column(db.DateTime(timezone=True), default=func.current_timestamp())

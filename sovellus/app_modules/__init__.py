@@ -1,7 +1,7 @@
 """
 Initializes the package for modularity.
 
-Uses flask login for the login login
+Uses flask login for the login
 
 """
 

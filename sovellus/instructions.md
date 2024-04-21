@@ -47,3 +47,10 @@ SECRET_KEY=h4g23e8fae6c3et5b724o8b4791aycd4
 ```
 This will start a local server, accessible at http://127.0.0.1:5000
 
+### Test as an ADMIN user
+
+To test the app as and admin user try logging in with credentials **username:** 'admin' and **password:** 'admin'.
+If the schema.sql works as it should, you should be able to use the profile as an admin user now.
+
+> In case the schema.sql failed to create an admin user, please refer to the admin_creation.txt for a readily made sql command
+> to create a new admin profile with a hashed password. Credentials for this profile stay the same, username: admin and password: admin.

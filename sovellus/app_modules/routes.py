@@ -5,7 +5,7 @@ imports the flask login to handle permissions and login actions
 imports the database handling commands from db actions
 """
 
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, abort
 from .db_actions import *
 from flask_login import logout_user, login_required, login_user, current_user
 
@@ -57,6 +57,8 @@ def new_thread(topic_id):
         content = request.form.get("content")
         user_id = current_user.get_id()
         add_thread(title, content, topic_id, user_id)
+        log_action(user_id, 'Create Thread', f'User created a new thread in topic ID {topic_id}')
+
         return redirect(url_for("main.show_topic", topic_id=topic_id))
     return render_template("new_thread.html", topic_id=topic_id)
 
@@ -73,6 +75,7 @@ def show_thread(thread_id):
         content = request.form.get("content")
         user_id = current_user.get_id()
         add_message(content, thread_id, user_id)
+        log_action(user_id, 'Post Message', f'User posted a message in thread ID {thread_id}')
         return redirect(url_for("main.show_thread", thread_id=thread_id))
 
     messages = get_message_user_join(thread_id)
@@ -101,6 +104,7 @@ def post_topic():
     """
     title = request.form.get("title")
     topic_id = add_topic(title, current_user.get_id())
+    log_action(current_user.get_id(), 'Create Topic', f'User created a new topic with ID {topic_id}')
     return redirect(url_for("main.new_thread", topic_id=topic_id))
 
 
@@ -118,8 +122,10 @@ def login():
         user = get_user(username)
         if user and check_password_hash(user.password, password):
             login_user(user)
+            log_action(user.id, 'login', 'Successful login')
             return redirect(url_for("main.index"))
         else:
+            log_action(None, 'login_attempt', 'Failed login attempt for username: {}'.format(username))
             flash("Invalid username or password", "error")
             return render_template("login.html")
     return render_template("login.html")
@@ -171,5 +177,48 @@ def logout():
     """
     logout_user()
     return redirect(url_for("main.login"))
+
+
+@main.route("/logs")
+@login_required
+def view_logs():
+    user_id = current_user.get_id()
+
+    if get_username(user_id).is_admin() != 'admin':
+        abort(403)
+    logs = Log.query.order_by(Log.created_at.desc()).all()
+    return render_template("logs.html", logs=logs)
+
+@main.errorhandler(403)
+def page_forbidden(e):
+    return render_template('403.html'), 403
+
+
+@main.route('/profile')
+@login_required
+def view_profile():
+    user_profile = get_profile(current_user.get_id())
+    if not user_profile:
+        user_profile = UserProfile(
+            user_id=current_user.id,
+            first_name='',
+            last_name='',
+            birthdate=None,
+            bio='',
+            picture_url='default_image.png'
+        )
+        db.session.add(user_profile)
+        db.session.commit()
+
+    return render_template('profile.html', profile=user_profile)
+
+
+# TODO:
+"""
+@main.route('/edit_profile')
+@login_required
+def edit_profile():
+"""
+
 
 

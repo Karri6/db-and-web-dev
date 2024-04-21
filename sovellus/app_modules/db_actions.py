@@ -3,11 +3,10 @@ Implements the functions for handling db actions
 
 mostly getters and a couple join commands
 """
-from .db_models import User, Topic, Thread, Message
+from .db_models import *
 from .db_instance import db
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import session
-from sqlalchemy import text
 
 
 def get_users():
@@ -96,20 +95,20 @@ def get_username(user_id):
     return User.query.filter_by(id=user_id).first()
 
 
-# TODO: fix issues with db.models usage
-# for now just regular sql query
-def add_user221(username, password):
-    hashed_password = generate_password_hash(password)
-    sql = text("INSERT INTO users (username, password, role) VALUES (:username, :password, 'user')")
-    db.engine.execute(sql, username=username, password=hashed_password)
-    new_user = get_user(username)
-    return new_user
-
-
 def add_user(username, password):
     hashed_password = generate_password_hash(password)
     new_user = User(username=username, password=hashed_password, role="user")
     db.session.add(new_user)
     db.session.commit()
     return new_user
+
+
+def log_action(user_id, action, description):
+    log_entry = Log(user_id=user_id, action=action, description=description)
+    db.session.add(log_entry)
+    db.session.commit()
+
+
+def get_profile(user_id):
+    return UserProfile.query.filter_by(user_id=user_id).first()
 
