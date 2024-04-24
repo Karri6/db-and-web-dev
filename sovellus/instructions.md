@@ -4,6 +4,8 @@
 ## GIT clone
 Start by cloning this repository or download the raw files to your computer.
 
+- **Note that the root directory for the project is 'db-and-web-dev/sovellus/' which means, while setting up the app, all files should go under the 'sovellus/' directory. Leaving files to the upper 'db-and-web-dev/' directory may cause the app to not function as intended**
+
 ## Set Up Database Schema
 > These are the steps I took to get the database copied and running on another computer, if you have a better method feel free to use that. 
 
