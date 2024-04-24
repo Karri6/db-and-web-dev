@@ -342,8 +342,8 @@ ALTER TABLE ONLY public.user_profiles
 --
 -- Inserts an admin user for testing the role
 --
-INSERT INTO users (username, password, role, last_online) VALUES
-('admin', 'scrypt:32768:8:1$4qWkuzowHTmuql0z$487a07924cda4545a5c38fed3f2381fd06c5a87e9d147828abd83db59525eba91da3555c4e4734912f1e2db6a3fa9efc793a295a37a6cf009eeb3c74b3ce10de','admin', CURRENT_TIMESTAMP);
+INSERT INTO users (username, password, role) VALUES
+('admin', 'scrypt:32768:8:1$4qWkuzowHTmuql0z$487a07924cda4545a5c38fed3f2381fd06c5a87e9d147828abd83db59525eba91da3555c4e4734912f1e2db6a3fa9efc793a295a37a6cf009eeb3c74b3ce10de','admin');
 
 
 
