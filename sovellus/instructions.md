@@ -24,6 +24,14 @@ Configure the database schema using this command.
 psql -d <new_db_name> < schema.sql
 ```
 
+After succesfully configuring the database, use this command to create an admin role user manually.
+```
+INSERT INTO users (username, password, role) VALUES
+('admin', 'scrypt:32768:8:1$4qWkuzowHTmuql0z$487a07924cda4545a5c38fed3f2381fd06c5a87e9d147828abd83db59525eba91da3555c4e4734912f1e2db6a3fa9efc793a295a37a6cf009eeb3c74b3ce10de', 'admin');
+```
+- This is a readily made sql command to create a new **admin** profile with a hashed password. Credentials for this profile are username: admin and password: admin.
+> The admin_creation.txt has the same sql command that you can copy and paste to the cmd while configuring the db.
+
 ## Create .env Directory and Files
 To begin, the user needs to create a new directory 'env_files' under the root directory (sovellus). Under this directory the user needs to create two files:
 - First file is: 'db_url.env', copy and paste the following line to the file:
@@ -70,8 +78,5 @@ This will start a local server, accessible at http://127.0.0.1:5000
 ### Test as an ADMIN user
 
 To test the app as and admin user try logging in with credentials **username:** 'admin' and **password:** 'admin'.
-If the schema.sql works as it should, you should be able to use the profile as an admin user now.
-
-> In case the schema.sql failed to create an admin user, please refer to the admin_creation.txt for a readily made sql command
-> to create a new admin profile with a hashed password. Credentials for this profile stay the same, username: admin and password: admin.
+If you have completed the steps to configure the database, you should be able to use the application as an admin user now.
 
