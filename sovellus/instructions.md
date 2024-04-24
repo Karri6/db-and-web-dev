@@ -73,7 +73,7 @@ Use this command to launch the app.
 ```
   flask run
 ```
-This will start a local server, accessible at http://127.0.0.1:5000
+This will start a local server, accessible at 'http://127.0.0.1:5000'
 
 ### Test as an ADMIN user
 
