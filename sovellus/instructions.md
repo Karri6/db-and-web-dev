@@ -80,3 +80,4 @@ This will start a local server, accessible at 'http://127.0.0.1:5000'
 To test the app as and admin user try logging in with credentials **username:** 'admin' and **password:** 'admin'.
 If you have completed the steps to configure the database, you should be able to use the application as an admin user now.
 
+If you are still unable to access the app as an admin please refer to [admin user instructions]()
