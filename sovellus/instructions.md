@@ -25,6 +25,7 @@ psql -d <new_db_name> < schema.sql
 ```
 
 After succesfully configuring the database, use this command to create an admin role user manually.
+- Before running this line remember to sign into the correct database 'psql <new_db_name>' 
 ```
 INSERT INTO users (username, password, role) VALUES
 ('admin', 'scrypt:32768:8:1$4qWkuzowHTmuql0z$487a07924cda4545a5c38fed3f2381fd06c5a87e9d147828abd83db59525eba91da3555c4e4734912f1e2db6a3fa9efc793a295a37a6cf009eeb3c74b3ce10de', 'admin');
