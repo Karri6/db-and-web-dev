@@ -12,14 +12,6 @@ from flask_login import logout_user, login_required, login_user, current_user
 main = Blueprint("main", __name__)
 
 
-# to be deleted, from first database tests,
-# alternatively, might repurpose for admin use
-@main.route("/users")
-def show_users():
-    users = get_users()
-    return render_template("users.html", users=users)
-
-
 @main.route("/")
 @login_required
 def index():
@@ -182,6 +174,10 @@ def logout():
 @main.route("/logs")
 @login_required
 def view_logs():
+    """
+    Admin page to follow the traffic in the webpage
+    :return: renders page to view logs
+    """
     user_id = current_user.get_id()
 
     if get_username(user_id).is_admin() != 'admin':
@@ -191,12 +187,21 @@ def view_logs():
 
 @main.errorhandler(403)
 def page_forbidden(e):
+    """
+    Displays the error for forbidden page when a non-Admin user tries to
+    access the log-page
+    :return:
+    """
     return render_template('403.html'), 403
 
 
 @main.route('/profile')
 @login_required
 def view_profile():
+    """
+    Fetches the user profile or creates a new one if one does not exist yet
+    :return: renders the user profile page
+    """
     user_profile = get_profile(current_user.get_id())
     if not user_profile:
         user_profile = UserProfile(
@@ -210,15 +215,34 @@ def view_profile():
         db.session.add(user_profile)
         db.session.commit()
 
-    return render_template('profile.html', profile=user_profile)
+        return render_template('profile.html', profile=user_profile, age='not set')
+
+    age = get_age(user_profile.birthdate)
+
+    return render_template('profile.html', profile=user_profile, age=age)
 
 
 # TODO:
-"""
-@main.route('/edit_profile')
+@main.route('/edit_profile', methods=["GET", "POST"])
 @login_required
 def edit_profile():
-"""
+    """
+    allows user to edit their profile
+    :return: html route to the profile editing
+    """
 
+    if request.method == "POST":
+        firstname = request.form.get("firstname")
+        lastname = request.form.get("lastname")
+        birthdate = request.form.get("birthdate")
+        bio = request.form.get("bio")
 
+        user_id = current_user.get_id()
 
+        update_user_info(user_id, firstname, lastname, birthdate, bio)
+        user_profile = get_profile(user_id)
+        
+        age = get_age(user_profile.birthdate)
+        return render_template("profile.html", profile=user_profile, age=age)
+
+    return render_template("edit_profile.html")

@@ -3,6 +3,8 @@ Implements the functions for handling db actions
 
 mostly getters and a couple join commands
 """
+import datetime
+
 from .db_models import *
 from .db_instance import db
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -112,3 +114,32 @@ def log_action(user_id, action, description):
 def get_profile(user_id):
     return UserProfile.query.filter_by(user_id=user_id).first()
 
+
+def update_user_info(user_id, firstname, lastname, birthdate, bio):
+    user_profile = UserProfile.query.filter_by(user_id=user_id).first()
+
+    if firstname:
+        user_profile.first_name = firstname
+
+    if lastname:
+        user_profile.last_name = lastname
+
+    if birthdate:
+
+        formatted_date = format_date(birthdate)
+        user_profile.birthdate = formatted_date
+
+    if bio:
+        user_profile.bio = bio
+
+    db.session.commit()
+
+
+def format_date(birthdate):
+    parsed_date = datetime.datetime.strptime(birthdate, '%Y-%m-%d').date()
+    return parsed_date.strftime('%d/%m/%Y')
+
+
+def get_age(birthdate):
+    today = datetime.datetime.now()
+    return today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))

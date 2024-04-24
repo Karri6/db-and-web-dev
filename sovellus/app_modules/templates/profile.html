@@ -8,8 +8,8 @@
     <img src="/static/default_image.png" alt="Profile Picture" width="200" height="200">
     <p>First Name: {{ profile.first_name or 'Not set' }}</p>
     <p>Last Name: {{ profile.last_name or 'Not set' }}</p>
-    <p>Birthdate: {{ profile.birthdate or 'Not set' }}</p>
+    <p>Age: {{ age }}</p>
     <p>Biography: {{ profile.bio or 'Not set' }}</p>
 </div>
-<a>placeholder Edit Profile</a>
+<a href="{{ url_for('main.edit_profile') }}">Edit Profile</a>
 {% endblock %}
