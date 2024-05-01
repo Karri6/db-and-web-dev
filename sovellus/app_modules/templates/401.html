@@ -3,9 +3,9 @@
 {% block title %}Unauthorized{% endblock %}
 
 {% block content %}
-<h1>Forbidden</h1>
+<h1>Unauthorized Access</h1>
 <div class="container">
-    <p>There was an error with the user authentication.</p>
+    <p>You do not have permission to view this page.</p>
     <a href="{{ url_for('main.index') }}" class="button">Return to Home</a>
 </div>
 {% endblock %}

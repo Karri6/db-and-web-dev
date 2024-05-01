@@ -3,26 +3,33 @@
 {% block title %}{{ thread.title }}{% endblock %}
 
 {% block content %}
-<h1>{{ thread.title }}</h1>
-<div>
-    <p>{{ thread.content }}</p>
-    <p>Created by {{ thread.username }} on {{ thread.created_at|formatdatetime }}</p>
-</div>
+    <article class="thread">
+        <h1>{{ thread.title }}</h1>
+        <p>{{ thread.content }}</p>
+        <p class="content-meta">Created by {{ thread.username }} on {{ thread.created_at|formatdatetime }}</p>
+    </article>
 
-<h2>Replies:</h2>
-<ul>
-{% for message in messages %}
-    <li>
-        {{ message.content }} - Posted by {{ message.username }} on {{ message.created_at|formatdatetime }}
-    </li>
-{% endfor %}
-</ul>
+    <section class="replies">
+        <h2>Replies:</h2>
+        <ul class="item-list">
+            {% for message in messages %}
+                <li class="message-item">
+                    {{ message.content }} <br>
+                    <span class="content-meta">Posted by {{ message.username }} on {{ message.created_at|formatdatetime }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
 
-<h2>Reply to Thread</h2>
-<form action="{{ url_for('main.show_thread', thread_id=thread.id) }}" method="post">
-    <textarea name="content" rows="4" cols="50" required></textarea><br>
-    <input type="submit" value="Send Message">
-</form>
-
-<a href="{{ url_for('main.show_topic', topic_id=topic_id) }}">Back to Topic</a>
+    <section class="reply-form">
+        <h2>Reply to Thread</h2>
+        <form action="{{ url_for('main.show_thread', thread_id=thread.id) }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ session['csrf_token'] }}">
+            <textarea name="content" class="form-textarea" rows="4" maxlength="1000" required></textarea><br>
+            <input type="submit" class="button" value="Send Message">
+        </form>
+        <div class="actions">
+            <a href="{{ url_for('main.show_topic', topic_id=topic_id) }}" class="button">Back to Topic</a>
+        </div>
+    </section>
 {% endblock %}

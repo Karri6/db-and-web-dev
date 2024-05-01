@@ -3,13 +3,15 @@
 {% block title %}User Profile{% endblock %}
 
 {% block content %}
-<h1>User Profile</h1>
-<div>
-    <img src="/static/default_image.png" alt="Profile Picture" width="200" height="200">
-    <p>First Name: {{ profile.first_name or 'Not set' }}</p>
-    <p>Last Name: {{ profile.last_name or 'Not set' }}</p>
-    <p>Age: {{ age }}</p>
-    <p>Biography: {{ profile.bio or 'Not set' }}</p>
+<h1>YOUR PROFILE</h1>
+<div class="container">
+    <img src="{{ url_for('static', filename='default_image.png') }}" alt="Profile Picture" class="profile-image">
+    <div class="profile-info">
+        <p>First Name: {{ profile.first_name or 'Not set' }}</p>
+        <p>Last Name: {{ profile.last_name or 'Not set' }}</p>
+        <p>Age: {{ age }}</p>
+        <p>Biography: {{ profile.bio or 'Not set' }}</p>
+    </div>
+    <a href="{{ url_for('main.edit_profile') }}" class="edit-button">Edit Profile</a>
 </div>
-<a href="{{ url_for('main.edit_profile') }}">Edit Profile</a>
 {% endblock %}

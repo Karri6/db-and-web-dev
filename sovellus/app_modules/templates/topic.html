@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 
+{% block title %}{{ topic.title }}{% endblock %}
+
 {% block content %}
-<h1>{{ topic.title }}</h1>
-<ul>
-  {% for thread in threads %}
-  <li>
-    <a href="{{ url_for('main.show_thread', thread_id=thread.id) }}">{{ thread.title }}</a>
-    - Created on {{ thread.created_at|formatdatetime }}
-  </li>
-  {% endfor %}
-</ul>
-<a href="{{ url_for('main.new_thread', topic_id=topic.id) }}">Create New Thread</a>
-<a href="{{ url_for('main.index') }}">Back to Home</a>
+<section class="container">
+    <h1>{{ topic.title }}</h1>
+    <ul class="item-list">
+        {% for thread in threads %}
+        <li class="list-item">
+            <a href="{{ url_for('main.show_thread', thread_id=thread.id) }}">{{ thread.title }}</a>
+            <div class="content-meta">
+                Created on {{ thread.created_at|formatdatetime }}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="actions">
+        <a href="{{ url_for('main.new_thread', topic_id=topic.id) }}" class="button">Create New Thread</a>
+        <a href="{{ url_for('main.index') }}" class="button">Back to Home</a>
+    </div>
+</section>
 {% endblock %}

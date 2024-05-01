@@ -3,12 +3,18 @@
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
-<h1>Topics</h1>
-<ul>
-{% for topic in topics %}
-    <li><a href="{{ url_for('main.show_topic', topic_id=topic.id) }}">{{ topic.title }}</a></li>
-{% endfor %}
-</ul>
+<section class="container">
+    <h1>TOPICS</h1>
+    <ul class="item-list">
+        {% for topic in topics %}
+            <li class="list-item">
+                <a href="{{ url_for('main.show_topic', topic_id=topic.id) }}">{{ topic.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
 
-<a href="{{ url_for('main.new_topic') }}">Create New Topic</a>
+    <div class="actions">
+        <a href="{{ url_for('main.new_topic') }}" class="button">Create New Topic</a>
+    </div>
+</section>
 {% endblock %}

@@ -1,8 +1,10 @@
 """
-Trying the SQLAlchemy's ORM abilities by creating models for the
-database tables as classes.
+Class models for the database tables.
 
-
+Note: Was used in the initial implementation to
+use SQLAlchemy's ORM capabilities to the fullest. Some of the same logic remains,
+but this part of code is somewhat redundant, now that the sql queries
+do not return the direct instances of the classes.
 """
 from .db_instance import db
 from sqlalchemy.sql import func
@@ -33,6 +35,9 @@ class User(UserMixin, db.Model):
 
 
 class Topic(db.Model):
+    """
+    Creates a class model for the topics table in the database.
+    """
     __tablename__ = 'topics'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(30), nullable=False)
@@ -42,6 +47,9 @@ class Topic(db.Model):
 
 
 class Thread(db.Model):
+    """
+    Creates a class model for the threads table in the database.
+    """
     __tablename__ = 'threads'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), nullable=False)
@@ -53,6 +61,9 @@ class Thread(db.Model):
 
 
 class Message(db.Model):
+    """
+    Creates a class model for the messages table in the database.
+    """
     __tablename__ = 'messages'
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(1000), nullable=False)
@@ -62,6 +73,9 @@ class Message(db.Model):
 
 
 class UserProfile(db.Model):
+    """
+    Creates a class model for the user_profiles table in the database.
+    """
     __tablename__ = 'user_profiles'
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     birthdate = db.Column(db.Date)
@@ -72,6 +86,9 @@ class UserProfile(db.Model):
 
 
 class Log(db.Model):
+    """
+    Creates a class model for the Logs table in the database.
+    """
     __tablename__ = 'log'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)

@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 
+{% block title %}System Logs{% endblock %}
+
 {% block content %}
-<h1>System Logs</h1>
-<ul>
-{% for log in logs %}
-    <li>{{ log.created_at }} - {{log.user_id}} - {{ log.action }} - {{ log.description }}</li>
-{% endfor %}
-</ul>
+<div class="container">
+    <h1>System Logs</h1>
+    <ul class="logs-list">
+    {% for log in logs %}
+        <li>{{ log.created_at.strftime("%Y-%m-%d %H:%M:%S") }} -
+            User ID: {{ log.user_id }} -
+            Action: {{ log.action }} -
+            Description: {{ log.description }}</li>
+    {% endfor %}
+    </ul>
+</div>
 {% endblock %}
