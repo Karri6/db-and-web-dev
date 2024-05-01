@@ -14,25 +14,25 @@ The idea is a slightly modified version of the *"Discussion app"* example idea f
 
 
 ## Features
-- Users can log in and out
-- Users can create new account to login with
-- Users can see and interract with topics that are shown on the homepage of the application
-- Users can see when the last message was sent in each topic, as well as how many threads are under the topic
-- Users can create new *topics*
-- Users can create new *threads* under the topics 
-- Users can send a new *message* under existing threads
-- Users can create and modify a user profile page
-- Adminis can add and remove messages, threads and topics
-- Adminis can create a ban users
+- Users can log in and out **DONE**
+- Users can create new account to login with **DONE**
+- Users can see and interract with topics that are shown on the homepage of the application **DONE**
+- ~Users can see when the last message was sent in each topic, as well as how many threads are under the topic~
+- Users can create new *topics* **DONE**
+- Users can create new *threads* under the topics **DONE**
+- Users can send a new *message* under existing threads **DONE**
+- Users can create and modify a user profile page **DONE**
+- Admins can follow the activity on the app/page. **DONE**
+- Admins can add and remove messages, threads and topics
+- ~Admins can ban users~
 
 ### Initial plan has 6 database tables 
-> This may increase during the project
-- *users*
-- *user profiles*
-- *topics*
-- *threads*
-- *messages*
-- *log*
+- *users* **DONE**
+- *user profiles* **DONE**
+- *topics* **DONE**
+- *threads* **DONE**
+- *messages* **DONE**
+- *log* **DONE**
 
 ## Current State 
 ### (7.4.-24)
@@ -40,6 +40,14 @@ The idea is a slightly modified version of the *"Discussion app"* example idea f
 - User can Interact and Add new topics on the homepage
 - User can Add new Threads under the topics
 - User can Send new messages under the threads
+
+### (24.4.-24)
+- User can view their personal profile
+- User can edit their personal profile
+- App logs every action to a separate log table
+- Admin user can log in
+- Admin user can view the logs in an Admin only page
+
 
 ## How to use
 App can be tested by following the instructions given on the course page on how ot run a flask app. 
