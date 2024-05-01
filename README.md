@@ -17,11 +17,12 @@ The idea is a slightly modified version of the *"Discussion app"* example idea f
 - Users can log in and out **DONE**
 - Users can create new account to login with **DONE**
 - Users can see and interract with topics that are shown on the homepage of the application **DONE**
-- Users can see when the last message was sent in each topic, as well as how many threads are under the topic
+- ~Users can see when the last message was sent in each topic, as well as how many threads are under the topic~
 - Users can create new *topics* **DONE**
 - Users can create new *threads* under the topics **DONE**
 - Users can send a new *message* under existing threads **DONE**
 - Users can create and modify a user profile page **DONE**
+- Admins can follow the activity on the app/page. **DONE**
 - Admins can add and remove messages, threads and topics
 - ~Admins can ban users~
 
