@@ -23,7 +23,7 @@ The idea is a slightly modified version of the *"Discussion app"* example idea f
 - Users can send a new *message* under existing threads **DONE**
 - Users can create and modify a user profile page **DONE**
 - Admins can follow the activity on the app/page. **DONE**
-- Admins can add and remove messages, threads and topics
+- ~Admins can add and remove messages, threads and topics~
 - ~Admins can ban users~
 
 ### Initial plan has 6 database tables 
@@ -48,14 +48,17 @@ The idea is a slightly modified version of the *"Discussion app"* example idea f
 - Admin user can log in
 - Admin user can view the logs in an Admin only page
 
+### (2.5.-24)
+- Updated sql queries to match given criteria
+- Added csrf protection
+- Simple styling with a css style sheet
 
 ## How to use
 App can be tested by following the instructions given on the course page on how ot run a flask app. 
 For detailed instructions see [sovellus/instructions.md](sovellus/instructions.md)
 
-
 ## Notes
 - goal is to get this project done quick, thus unlikely I will incorporate any extra features or a fancy interface.
 - features as well as database tables are subject to change during the project
-
+- **Due to well foreseen circumstances some of the initial features were not implemented in time.**
 
