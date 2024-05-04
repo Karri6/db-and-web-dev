@@ -44,7 +44,7 @@ def create_app():
     manager = LoginManager()
     manager.login_view = "main.login"
     manager.init_app(app)
-    
+
     @manager.user_loader
     def load_user(user_id):
         """
