@@ -1,38 +1,59 @@
 # Discussion forum web-app
-> App created for the course Databases and web-development course at University of Helsinki, using Python, Flask and PSQL.
+> App created for the *'Databases and web-development'* course at University of Helsinki, using **Python, Flask** and **PSQL.**
 
 ## Intro
-Web-app will be a familiar messaging board/ discussion forum, where users can post **messages** in different **topics** and **threads**, as well as create new topics and threads to discuss about.
-The idea is a slightly modified version of the *"Discussion app"* example idea from the course page.
+Web-app is a familiar messaging board/ discussion forum, where users can post **messages** in different **topics** and **threads**, as well as create new topics and threads to discuss about.
+Admin user can view a complete log of what happens in the app and can be tested using the given admin profile in the *[instructions](sovellus/instructions.md).*\
+The project idea is a slightly modified version of the *"Discussion app"* example idea from the course page.
+
+---
 
 ## Contents:
-- [Features](#features)
-- [Database Tables](#initial-plan-has-6-database-tables)
-- [Current State](#current-state)
 - [How to use](#how-to-use)
-- [Notes](#notes)
+- [Features](#features)
+- [Database Tables](#database-tables)
+- [Current State](#current-state)
 
+--- 
+
+## How to use
+App can be tested by following the instructions given on the course page on how to run a flask app. 
+For more detailed instructions see [sovellus/instructions.md](sovellus/instructions.md)
+
+---
 
 ## Features
 - Users can log in and out **DONE**
 - Users can create new account to login with **DONE**
 - Users can see and interract with topics that are shown on the homepage of the application **DONE**
-- ~Users can see when the last message was sent in each topic, as well as how many threads are under the topic~
 - Users can create new *topics* **DONE**
 - Users can create new *threads* under the topics **DONE**
 - Users can send a new *message* under existing threads **DONE**
 - Users can create and modify a user profile page **DONE**
 - Admins can follow the activity on the app/page. **DONE**
-- ~Admins can add and remove messages, threads and topics~
-- ~Admins can ban users~
 
-### Initial plan has 6 database tables 
+### unfinished features that were in the origirnal plan
+- Users can see when the last message was sent in each topic, as well as how many threads are under the topic
+- Admins can add and remove messages, threads and topics
+- Admins can ban users
+
+--- 
+
+## Database tables
 - *users* **DONE**
+  - user details as username and user id
 - *user profiles* **DONE**
+  - user profile details such as name, age, bio
 - *topics* **DONE**
+  - topics posted on the page
 - *threads* **DONE**
+  - threads posted under topics, connected with topic id
 - *messages* **DONE**
+  - messages posted under threads, connected with thread id
 - *log* **DONE**
+  - a complete log of every event that occurs in the website
+
+--- 
 
 ## Current State 
 ### (7.4.-24)
@@ -53,12 +74,6 @@ The idea is a slightly modified version of the *"Discussion app"* example idea f
 - Added csrf protection
 - Simple styling with a css style sheet
 
-## How to use
-App can be tested by following the instructions given on the course page on how ot run a flask app. 
-For detailed instructions see [sovellus/instructions.md](sovellus/instructions.md)
-
-## Notes
-- goal is to get this project done quick, thus unlikely I will incorporate any extra features or a fancy interface.
-- features as well as database tables are subject to change during the project
-- **Due to well foreseen circumstances some of the initial features were not implemented in time.**
-
+### (5.5.-24)
+- Finalized project
+- Updated and cleaned readme.md  
