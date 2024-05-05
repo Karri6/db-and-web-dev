@@ -2,7 +2,7 @@
 > App created for the *'Databases and web-development'* course at University of Helsinki, using **Python, Flask** and **PSQL.**
 
 ## Intro
-Web-app is a familiar messaging board/ discussion forum, where users can post **messages** in different **topics** and **threads**, as well as create new topics and threads to discuss about.
+The web-app is a familiar messaging board/ discussion forum, where users can post **messages** in different **topics** and **threads**, as well as create new topics and threads to discuss about.
 Admin user can view a complete log of what happens in the app and can be tested using the given admin profile in the *[instructions](sovellus/instructions.md).*\
 The project idea is a slightly modified version of the *"Discussion app"* example idea from the course page.
 
